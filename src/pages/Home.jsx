@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Check, X, Shield, Zap, Trophy } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check,Menu, X, Shield, Zap, Trophy } from 'lucide-react';
 // Ensure these imports match your actual file structure and data definitions
 import { BannerData, Impacts, MoreFeatures, SolvingCrises, steps } from '../components/Options';
 import ComparisonTable from '../components/ComparisionTable'; // Assuming this component exists and is correctly structured
@@ -30,8 +30,6 @@ const Home = () => {
     setCurrentSlide((prev) => (prev + 1) % BannerData.length);
   };
 
-  // Helper function to render feature values (used in ComparisonTable, kept here for context)
-  // Note: This function might be better placed within ComparisionTable.jsx if it's only used there.
   const renderFeatureValue = (value, isSelected = false) => {
     if (typeof value === 'boolean') {
       return value ? (
@@ -57,7 +55,7 @@ const Home = () => {
       <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-gray-100 to-gray-300 min-h-[400px] md:min-h-[500px] lg:min-h-[600px]">
         {/* Slides Container */}
         <div
-          className="flex transition-transform duration-500 ease-in-out h-full"
+          className="flex transition-transform duration-1000 ease-in-out h-full"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {BannerData.map((slide) => (

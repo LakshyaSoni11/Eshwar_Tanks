@@ -21,7 +21,7 @@ const ContactUs = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         // Basic validation
         if (!form.fullName.trim() || !form.email.trim() || !form.message.trim()) {
             setSuccess('Please fill in all required fields');
@@ -36,7 +36,7 @@ const ContactUs = () => {
 
         setLoading(true);
         setSuccess('');
-        
+
         try {
             // Saveing to Firestore 
             await addDoc(collection(db, "ContactMessages"), {
@@ -48,8 +48,9 @@ const ContactUs = () => {
                 status: 'new'
             });
 
-            
-            const emailParams = {
+
+            // First email - to admin (current functionality)
+            const adminEmailParams = {
                 to_name: "Eshwar Tanks Admin",
                 from_name: form.fullName,
                 from_email: "priyanshu7248raj@gmail.com",
@@ -58,19 +59,26 @@ const ContactUs = () => {
                 reply_to: form.email,
             };
 
-            await emailjs.send(
-                'service_4mzjfwk',    
-                'template_8cdmgqb',   
-                emailParams,
-                '_fLcZAqJV4N6WR9-l'   
-            );
+            // Second email - confirmation to user
+            const userEmailParams = {
+                to_name: form.fullName,
+                to_email: form.email,
+                from_name: "Eshwar Tanks",
+                from_email: "admin@eshwartanks.com",
+                message: "Thank you for contacting us. We have received your message and will get back to you soon.",
+                user_message: form.message, // Include their original message
+            };
+
+            // Sending both emails
+            await emailjs.send('service_4mzjfwk', 'template_8cdmgqb', adminEmailParams, '_fLcZAqJV4N6WR9-l');
+            await emailjs.send('service_4mzjfwk', 'template_user_confirmation', userEmailParams, '_fLcZAqJV4N6WR9-l');
 
             setSuccess(' Your message has been sent successfully! We will get back to you soon.');
             setForm({ fullName: "", email: "", phone: "", message: "" });
-            
+
         } catch (error) {
             console.error("Error:", error);
-            
+
             if (error.text) {
                 // EmailJS error
                 setSuccess(' Failed to send email. Please try again or contact us directly.');
@@ -80,7 +88,7 @@ const ContactUs = () => {
                 setSuccess(' Something went wrong. Please try again later.');
             }
         }
-        
+
         setLoading(false);
     }
 
@@ -135,7 +143,7 @@ const ContactUs = () => {
                                 </div>
                             </div>
                         </div>
-                        
+
                         {/* Map */}
                         <div>
                             <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Location</h2>
@@ -157,11 +165,10 @@ const ContactUs = () => {
                     <div className="bg-white p-8 rounded-2xl shadow-2xl border">
                         <h2 className="text-3xl font-bold text-gray-800">Send us a Message</h2>
                         {success && (
-                            <div className={`mt-4 p-3 rounded-md ${
-                                success.includes('successfully') 
-                                    ? 'bg-green-50 text-green-700 border border-green-200' 
+                            <div className={`mt-4 p-3 rounded-md ${success.includes('successfully')
+                                    ? 'bg-green-50 text-green-700 border border-green-200'
                                     : 'bg-red-50 text-red-700 border border-red-200'
-                            }`}>
+                                }`}>
                                 {success}
                             </div>
                         )}
