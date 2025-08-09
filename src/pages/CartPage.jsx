@@ -1,12 +1,10 @@
-// src/pages/CartPage.jsx (or wherever you manage your pages)
 import React from 'react';
-import { useCart } from '../context/CartContext.jsx'; // <--- Import useCart hook
-import { TrashIcon } from '@heroicons/react/24/outline'; // Example icon for delete
-
+import { useCart } from '../contexts/CartContext.jsx'; 
+import { TrashIcon } from '@heroicons/react/24/outline';
 
 
 const CartPage = () => {
-    const { cartItems, removeItemFromCart, updateItemQuantity, clearCart } = useCart();
+    const { cartItems, removeItemFromCart, updateItemQuantity, clearCart, checkOut} = useCart();
     console.log("cart page data ",cartItems)
     const calculateTotal = () => {
         return cartItems.reduce((sum, item) => sum + parseFloat(item.price.replace('Rs ', '')) * item.quantity, 0).toFixed(2);
@@ -17,7 +15,6 @@ const CartPage = () => {
             <div className="max-w-4xl mx-auto py-16 md:py-24 px-4 text-center">
                 <h2 className="text-3xl font-bold text-gray-800">Your Cart is Empty</h2>
                 <p className="mt-4 text-lg text-gray-600">Add some products to get started!</p>
-                {/* You might add a link to your products page here */}
             </div>
         );
     }
@@ -71,7 +68,7 @@ const CartPage = () => {
                 >
                     Clear Cart
                 </button>
-                <button className="px-8 py-3 bg-[#005595] text-white rounded-lg font-semibold hover:bg-[#004477] transition-colors">
+                <button onClick={checkOut} className="px-8 py-3 bg-[#005595] text-white rounded-lg font-semibold hover:bg-[#004477] transition-colors">
                     Proceed to Checkout
                 </button>
             </div>

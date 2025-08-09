@@ -4,4 +4,11 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  server: {
+    port: 5173,
+    host: true, // Allow external connections
+    hmr: {
+      port: 5173,
+    }
+  }
 })

@@ -1,7 +1,7 @@
 // ProductCard.jsx (your provided code)
 import React, { useState } from 'react';
 import { ShoppingCartIcon, CheckCircleIcon } from '@heroicons/react/24/solid';
-import { useCart } from '../context/CartContext.jsx'; // <--- Import useCart hook
+import { useCart } from '../contexts/CartContext.jsx'; // <--- Import useCart hook
 
 const ProductCard = ({ product }) => {
     const [selectedVariant, setSelectedVariant] = useState('wired');

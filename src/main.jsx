@@ -1,56 +1,72 @@
+// src/index.jsx
 import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ClerkProvider, SignIn, SignUp } from '@clerk/clerk-react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from 'sonner';
 
-// Import your CartProvider
-import { CartProvider } from './context/CartContext.jsx';
+// Context Providers
+import { AuthProvider } from './contexts/authContext';
+import { CartProvider } from './contexts/CartContext';
 
-// Your Page and Component Imports
+// Components and Pages
 import Navbar from './components/Navbar';
-import CartPage from './pages/CartPage.jsx'; // ← Changed to pages directory
-import Home from './pages/Home.jsx';
-import AboutUs from './pages/AboutUs.jsx';
-import ContactUs from './pages/ContactUs.jsx';
-import Products from './pages/Products.jsx';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import Products from './pages/Products';
+import CartPage from './pages/CartPage';
+import Login from './components/auth/login';
+import Register from './components/auth/register';
+import PrivateRoute from './components/PrivateRoute';
 
-// Import your publishable key
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+// Separate App component
+function App() {
+  const location = useLocation();
+  const hideNavbarPaths = ['/login', '/register'];
 
-if (!PUBLISHABLE_KEY) {
-  throw new Error('Missing Publishable Key');
+  return (
+    <>
+      {/* Show Navbar only if route is not in hideNavbarPaths */}
+      {!hideNavbarPaths.includes(location.pathname) && <Navbar />}
+
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* Protected Route */}
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <CartPage />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+
+      {!hideNavbarPaths.includes(location.pathname) && <Footer />}
+    </>
+  );
 }
 
+// Render the app
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <AuthProvider>
       <CartProvider>
         <Router>
-          <Navbar />
-          <Routes>
-            {/* Public routes */}
-            <Route path='/' element={<Home />} />
-            <Route path='/about' element={<AboutUs />} />
-            <Route path='/contact' element={<ContactUs />} />
-            <Route path='/products' element={<Products />} />
-            <Route path='/cart' element={<CartPage />} />
-
-            {/* Clerk authentication routes */}
-            <Route
-              path="/sign-in/*"
-              element={<SignIn routing="path" path="/sign-in" />}
-            />
-            <Route
-              path="/sign-up/*"
-              element={<SignUp routing="path" path="/sign-up" />}
-            />
-          </Routes>
+          <App />
         </Router>
       </CartProvider>
-    </ClerkProvider>
-    
+    </AuthProvider>
+
     {/* Toast notifications */}
     <Toaster position="bottom-right" richColors />
   </StrictMode>
