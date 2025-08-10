@@ -10,7 +10,7 @@ const Products = () => {
     return (
         <div className='bg-gray-50 min-h-screen'> {/* Added min-h-screen for better layout */}
             {/* Header Section */}
-            <div
+            {/* <div
                 ref={headerRef}
                 className={`bg-gradient-to-r from-gray-100 to-gray-300 py-16 md:py-20 text-center transform transition-all duration-700 ease-out ${
                     headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -24,7 +24,7 @@ const Products = () => {
                         Explore our range of intelligent devices designed to optimize water management and bring peace of mind to your home or business.
                     </p>
                 </div>
-            </div>
+            </div> */}
 
             {/* Products Grid */}
             <div
@@ -33,7 +33,7 @@ const Products = () => {
                     productsGridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
             >
-                <div className="space-y-16">
+                <div className="space-y-16  gap-10">
                     <ProductCard product={semiAutomatic} />
                     <ProductCard product={FullyAutomatic} />
                 </div>

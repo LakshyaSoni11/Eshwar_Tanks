@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
 
     return (
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200/50">
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid  md:grid-cols-2">
                 {/* Product Image */}
                 <div className="p-4 md:p-6">
                     

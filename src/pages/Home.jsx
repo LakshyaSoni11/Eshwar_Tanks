@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Check,Menu, X, Shield, Zap, Trophy } from 'l
 import { BannerData, Impacts, MoreFeatures, SolvingCrises, steps } from '../components/Options';
 import ComparisonTable from '../components/ComparisionTable'; // Assuming this component exists and is correctly structured
 import useScrollAnimation from '../hooks/useScrollAnimation'; // Import the custom hook
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -69,9 +70,11 @@ const Home = () => {
                   <p className='font-semibold text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-gray-600 max-w-2xl mx-auto lg:mx-0'>
                     {slide.description}
                   </p>
+                 <Link to='/products'>
                   <button className='text-lg md:text-xl px-6 md:px-8 py-3 md:py-4 rounded-2xl bg-gray-600 hover:bg-gray-700 text-white font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl'>
                     {slide.buttonText}
                   </button>
+                 </Link>
                 </div>
 
                 {/* Image Section */}

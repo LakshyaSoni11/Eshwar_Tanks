@@ -1,24 +1,20 @@
-// src/components/Options.jsx
 
 import React from 'react';
-// Import Lucide React icons
 import {
-  Sparkles, Globe, Cloud, Zap, Droplets, TrendingDown,
-  Shield, Trophy, Wifi, Bell, Smartphone, Clock, Wrench,
-  CalendarCheck, Mail, Phone, Gauge, Activity, BatteryCharging,
-  Home, Settings, TrendingUp, Heart, MessageSquare, PhoneCall,
-  Check, X // Ensure Check and X are imported if renderFeatureValue is used elsewhere
+   Zap, Droplets, TrendingDown,
+  Shield, Wifi, Smartphone, Wrench,
+    Gauge, Activity, 
+   TrendingUp,  PhoneCall,
+  Check, 
 } from 'lucide-react';
 
 // Import React-Icons
 import { FaHandHoldingWater } from "react-icons/fa";
 import { SlEnergy } from "react-icons/sl";
-import { SiCrowdsource } from "react-icons/si";
 import { MdFamilyRestroom } from "react-icons/md";
 import { MdEnergySavingsLeaf } from "react-icons/md";
 import { GiAchievement } from "react-icons/gi";
 
-// Assuming these are your actual image paths in the public folder
 import BannerImg from "../assets/logo.jpg";
 import aquaPrimeImg from '../assets/logo.jpg'; // Example path for semiAutomatic
 import ecoFlowImg from '../assets/logo.jpg'; // Example path for FullyAutomatic
@@ -109,21 +105,21 @@ export const BannerData = [
     id: 1,
     title: "Smart Water Management for Every Indian Home",
     description: "Experience peace of mind with Tank.AI – intelligent water level monitoring and automation.",
-    buttonText: "Explore Products",
+    buttonText: "View Product",
     image: BannerImg,
   },
   {
     id: 2,
     title: "Conserve Water, Save Money, Live Smarter",
     description: "Our AI-powered devices prevent wastage and optimize water usage for a sustainable future.",
-    buttonText: "View Solutions",
+    buttonText: "View Product",
     image: BannerImg,
   },
   {
     id: 3,
     title: "Seamless Integration, Effortless Control",
     description: "Tank.AI blends into your home, providing intuitive control over your water resources.",
-    buttonText: "Discover More",
+    buttonText: "View Product",
     image: BannerImg,
   },
 ];
