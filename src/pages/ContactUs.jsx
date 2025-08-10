@@ -61,17 +61,17 @@ const ContactUs = () => {
 
             // Second email - confirmation to user
             const userEmailParams = {
-                to_name: form.fullName,
-                to_email: form.email,
-                from_name: "Eshwar Tanks",
-                from_email: "admin@eshwartanks.com",
-                message: "Thank you for contacting us. We have received your message and will get back to you soon.",
-                user_message: form.message, // Include their original message
+                email: form.email,
+                from_name: form.fullName,
+                title: "Contact Confirmation",
+                message: "Thank you for contacting Eshwar Tanks. We have received your message and will get back to you soon.",
             };
+
 
             // Sending both emails
             await emailjs.send('service_4mzjfwk', 'template_8cdmgqb', adminEmailParams, '_fLcZAqJV4N6WR9-l');
             await emailjs.send('service_4mzjfwk', 'template_user_confirmation', userEmailParams, '_fLcZAqJV4N6WR9-l');
+
 
             setSuccess(' Your message has been sent successfully! We will get back to you soon.');
             setForm({ fullName: "", email: "", phone: "", message: "" });
@@ -166,8 +166,8 @@ const ContactUs = () => {
                         <h2 className="text-3xl font-bold text-gray-800">Send us a Message</h2>
                         {success && (
                             <div className={`mt-4 p-3 rounded-md ${success.includes('successfully')
-                                    ? 'bg-green-50 text-green-700 border border-green-200'
-                                    : 'bg-red-50 text-red-700 border border-red-200'
+                                ? 'bg-green-50 text-green-700 border border-green-200'
+                                : 'bg-red-50 text-red-700 border border-red-200'
                                 }`}>
                                 {success}
                             </div>

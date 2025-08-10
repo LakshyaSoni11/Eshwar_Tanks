@@ -20,12 +20,12 @@ const CartPage = () => {
     }
     
     return (
-        <div className="max-w-4xl mx-auto py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white rounded-2xl shadow-xl">
+        <div className="max-w-4xl mx-auto py-16 md:py-24 px-6 sm:px-6 lg:px-8 bg-white rounded-2xl shadow-xl">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-800 text-center mb-10">Your Shopping Cart</h1>
 
             <div className="space-y-8">
                 {cartItems.map(item => (
-                    <div key={`${item.productId}-${item.variantKey}`} className="flex items-center border-b pb-6 last:border-b-0 last:pb-0">
+                    <div key={`${item.productId}-${item.variantKey}`} className="flex items-center border-b pb-6 last:border-b-0 px-2 last:pb-0">
                         <img src={item.image} alt={item.productName} className="w-24 h-24 object-cover rounded-lg mr-6" />
                         <div className="flex-grow">
                             <h3 className="text-xl font-semibold text-gray-800">{item.productName} ({item.variantName})</h3>
