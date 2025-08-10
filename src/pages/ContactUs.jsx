@@ -9,6 +9,7 @@ const ContactUs = () => {
         fullName: "",
         email: "",
         phone: "",
+        title: "",
         message: ""
     });
 
@@ -63,9 +64,10 @@ const ContactUs = () => {
             const userEmailParams = {
                 email: form.email,
                 from_name: form.fullName,
-                title: "Contact Confirmation",
+                title: form.title,
                 message: "Thank you for contacting Eshwar Tanks. We have received your message and will get back to you soon.",
             };
+            console.log(userEmailParams)
 
             // Sending both emails
             await emailjs.send('service_4mzjfwk', 'template_8cdmgqb', adminEmailParams, '_fLcZAqJV4N6WR9-l');
@@ -204,6 +206,17 @@ const ContactUs = () => {
                                     onChange={handleChange}
                                     className="block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-[#005595] focus:ring-[#005595] focus:outline-none"
                                     placeholder="Enter your phone number (optional)"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-1">Subject</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={form.title}
+                                    onChange={handleChange}
+                                    className="block w-full rounded-md border border-gray-300 p-3 shadow-sm focus:border-[#005595] focus:ring-[#005595] focus:outline-none"
+                                    placeholder="Please give a title to your query"
                                 />
                             </div>
                             <div>
