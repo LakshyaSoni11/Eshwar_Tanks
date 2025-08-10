@@ -67,11 +67,9 @@ const ContactUs = () => {
                 message: "Thank you for contacting Eshwar Tanks. We have received your message and will get back to you soon.",
             };
 
-
             // Sending both emails
             await emailjs.send('service_4mzjfwk', 'template_8cdmgqb', adminEmailParams, '_fLcZAqJV4N6WR9-l');
-            await emailjs.send('service_4mzjfwk', 'template_user_confirmation', userEmailParams, '_fLcZAqJV4N6WR9-l');
-
+            await emailjs.send('service_4mzjfwk', 'template_ntimvsa', userEmailParams, '_fLcZAqJV4N6WR9-l');
 
             setSuccess(' Your message has been sent successfully! We will get back to you soon.');
             setForm({ fullName: "", email: "", phone: "", message: "" });
